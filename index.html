@@ -3,73 +3,785 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Hamed Nouri — Portfolio Directory</title>
+    <title>Hamed Nouri — Subdomain Directory</title>
+    <meta name="description" content="A central directory for my role-specific sites, creative work, communication projects, Japanese-language work, and business-focused profiles.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --primary-color: #0f172a;
+            --accent-color: #3b82f6;
+            
+            /* Status Colors */
+            --live-bg: #dcfce7;
+            --live-text: #166534;
+            --progress-bg: #dbeafe;
+            --progress-text: #1e40af;
+            --placeholder-bg: #fef3c7;
+            --placeholder-text: #92400e;
+            --broken-bg: #fee2e2;
+            --broken-text: #b91c1c;
+            --planned-bg: #f1f5f9;
+            --planned-text: #475569;
+        }
+
+        * { box-sizing: border-box; }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f4f4f5;
-            color: #18181b;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             line-height: 1.6;
             margin: 0;
-            padding: 40px 20px;
+            padding: 0;
         }
-        .container {
-            max-width: 800px;
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0 0 16px 0;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        header p {
+            color: var(--text-muted);
+            max-width: 600px;
             margin: 0 auto;
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            font-size: 1.125rem;
         }
-        h1 {
-            font-size: 2rem;
-            margin-top: 0;
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .category-section {
+            margin-bottom: 64px;
+        }
+
+        .category-header {
             margin-bottom: 24px;
-            border-bottom: 1px solid #e4e4e7;
-            padding-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border-color);
         }
+
+        .category-header h2 {
+            font-size: 1.75rem;
+            margin: 0 0 8px 0;
+            font-weight: 600;
+        }
+
+        .category-header p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
         }
-        a {
-            display: block;
-            padding: 16px;
-            background-color: #fafafa;
-            border: 1px solid #e4e4e7;
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            margin: 0;
+            font-size: 1.125rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+            margin-left: 12px;
+        }
+
+        .badge.live { background-color: var(--live-bg); color: var(--live-text); }
+        .badge.in-progress { background-color: var(--progress-bg); color: var(--progress-text); }
+        .badge.placeholder { background-color: var(--placeholder-bg); color: var(--placeholder-text); }
+        .badge.broken { background-color: var(--broken-bg); color: var(--broken-text); }
+        .badge.planned { background-color: var(--planned-bg); color: var(--planned-text); }
+
+        .card-url {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+            word-break: break-all;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin: 0 0 24px 0;
+            flex-grow: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 10px 16px;
             border-radius: 6px;
-            text-decoration: none;
-            color: #2563eb;
+            text-align: center;
             font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
             transition: all 0.2s;
         }
-        a:hover {
-            background-color: #f3f4f6;
-            border-color: #d1d5db;
-            color: #1d4ed8;
+
+        .btn-live {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .btn-live:hover {
+            background-color: #1e293b;
+        }
+
+        .btn-disabled {
+            background-color: var(--planned-bg);
+            color: var(--text-muted);
+            pointer-events: none;
+            border: 1px solid var(--border-color);
+        }
+
+        footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .footer-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            max-width: 500px;
+            margin: 0 auto 24px auto;
+        }
+
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 12px;
+            font-size: 0.95rem;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Portfolio Directory</h1>
-        <div class="grid">
-            <a href="https://creative.hamednouri.com">creative.hamednouri.com</a>
-            <a href="https://writing.hamednouri.com">writing.hamednouri.com</a>
-            <a href="https://comms.hamednouri.com">comms.hamednouri.com</a>
-            <a href="https://learning.hamednouri.com">learning.hamednouri.com</a>
-            <a href="https://delivery.hamednouri.com">delivery.hamednouri.com</a>
-            <a href="https://ux.hamednouri.com">ux.hamednouri.com</a>
-            <a href="https://technical.hamednouri.com">technical.hamednouri.com</a>
-            <a href="https://docs.hamednouri.com">docs.hamednouri.com</a>
-            <a href="https://resume.hamednouri.com">resume.hamednouri.com</a>
-            <a href="https://services.hamednouri.com">services.hamednouri.com</a>
-            <a href="https://press.hamednouri.com">press.hamednouri.com</a>
-            <a href="https://ventures.hamednouri.com">ventures.hamednouri.com</a>
-            <!-- Note: Additional sites can be added here if needed -->
+
+<header>
+    <h1>Hamed Nouri — Hub</h1>
+    <p>A central directory for my role-specific sites, creative work, communication projects, Japanese-language work, and business-focused profiles.</p>
+</header>
+
+<main>
+
+    <section class="category-section">
+        <div class="category-header">
+            <h2>Creative</h2>
+            <p>Storytelling, comics, design, writing, and visual content projects.</p>
         </div>
+        <div class="grid">
+    
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Creative Work</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">creative.hamednouri.com</div>
+                <p class="card-desc">A central creative profile for storytelling, comics, design, writing, and visual content projects.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Portfolio</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">portfolio.hamednouri.com</div>
+                <p class="card-desc">A broad portfolio showing selected work across communications, content, design, writing, education, and digital projects.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Writing Portfolio</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">writing.hamednouri.com</div>
+                <p class="card-desc">Writing samples, essays, newsletters, articles, scripts, and professional communications work.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Author Profile</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">author.hamednouri.com</div>
+                <p class="card-desc">Books, comics, creative writing, fiction, children’s content, and published storytelling projects.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Storytelling</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">storytelling.hamednouri.com</div>
+                <p class="card-desc">Narrative work across comics, education, cultural storytelling, and cross-cultural media.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Comics</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">comics.hamednouri.com</div>
+                <p class="card-desc">Comic writing, comic editing, visual storytelling, manga-inspired projects, and creative direction.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Manga & Visual Narratives</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">manga.hamednouri.com</div>
+                <p class="card-desc">Manga-related work, Muslim Manga projects, visual narrative strategy, and cross-cultural storytelling.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Muslim Manga Work</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">muslimmanga.hamednouri.com</div>
+                <p class="card-desc">Muslim Manga-related projects, community building, publishing, editorial workflows, and audience growth.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">MManga</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">mmanga.hamednouri.com</div>
+                <p class="card-desc">MManga operations, contributor systems, campaigns, community growth, and publishing infrastructure.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Design Work</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">design.hamednouri.com</div>
+                <p class="card-desc">Visual design, brand assets, web graphics, posters, character work, and design-adjacent portfolio pieces.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Media & Content</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">media.hamednouri.com</div>
+                <p class="card-desc">Podcasts, newsletters, media campaigns, video/audio content, and multi-channel content systems.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Newsletter Work</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">newsletter.hamednouri.com</div>
+                <p class="card-desc">Newsletter strategy, editorial writing, Substack-style content, audience engagement, and campaigns.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Community & Audience Growth</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">community.hamednouri.com</div>
+                <p class="card-desc">Community operations, contributor workflows, audience growth, social campaigns, and engagement systems.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+        </div>
+    </section>
+    
+    <section class="category-section">
+        <div class="category-header">
+            <h2>Communication</h2>
+            <p>Implementation support, communications strategy, documentation, and enablement.</p>
+        </div>
+        <div class="grid">
+    
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Delivery Manager & Customer Enablement</h3>
+                    <span class="badge live">Live</span>
+                </div>
+                <div class="card-url">delivery.hamednouri.com</div>
+                <p class="card-desc">Software adoption, implementation support, customer enablement, documentation, training, and delivery-focused work.</p>
+                <a href="https://delivery.hamednouri.com" class="btn-live btn">Visit</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Communications</h3>
+                    <span class="badge live">Live</span>
+                </div>
+                <div class="card-url">communications.hamednouri.com</div>
+                <p class="card-desc">Communications strategy, internal communications, stakeholder messaging, campaigns, and organizational alignment.</p>
+                <a href="https://communications.hamednouri.com" class="btn-live btn">Visit</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Internal Communications</h3>
+                    <span class="badge live">Live</span>
+                </div>
+                <div class="card-url">internalcomms.hamednouri.com</div>
+                <p class="card-desc">Internal communications programs, employee updates, rollout communications, and knowledge-sharing systems.</p>
+                <a href="https://internalcomms.hamednouri.com" class="btn-live btn">Visit</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Communication Strategy</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">communication.hamednouri.com</div>
+                <p class="card-desc">A communication-focused profile for translating complex ideas into clear messaging and action.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Content Strategy</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">content.hamednouri.com</div>
+                <p class="card-desc">Content strategy, messaging, editorial planning, campaigns, and multi-channel content development.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Documentation</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">documentation.hamednouri.com</div>
+                <p class="card-desc">User guides, FAQs, SOPs, knowledge bases, process documentation, training materials, and help content.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Technical Writing</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">technicalwriting.hamednouri.com</div>
+                <p class="card-desc">Technical writing, software documentation, user-facing help content, and complex-information simplification.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Training & Enablement</h3>
+                    <span class="badge live">Live</span>
+                </div>
+                <div class="card-url">training.hamednouri.com</div>
+                <p class="card-desc">Training resources, workshops, onboarding materials, user education, and learning support.</p>
+                <a href="https://training.hamednouri.com" class="btn-live btn">Visit</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Customer Enablement</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">enablement.hamednouri.com</div>
+                <p class="card-desc">Customer enablement, self-service resources, adoption materials, and support-reducing documentation.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Software Adoption</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">adoption.hamednouri.com</div>
+                <p class="card-desc">Adoption campaigns, rollout support, user readiness, adoption measurement, and feedback loops.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Knowledge Management</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">knowledge.hamednouri.com</div>
+                <p class="card-desc">Knowledge bases, internal sites, content libraries, self-service systems, and structured information access.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Change Management</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">changemanagement.hamednouri.com</div>
+                <p class="card-desc">Change communications, system transitions, rollout planning, stakeholder alignment, and user readiness.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Implementation Support</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">implementation.hamednouri.com</div>
+                <p class="card-desc">Implementation planning, handoffs, project tracking, customer/user readiness, and technical stakeholder coordination.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Rollout Communications</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">rollout.hamednouri.com</div>
+                <p class="card-desc">Launch communications, product updates, release guidance, migration support, and user-facing rollout plans.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+        </div>
+    </section>
+    
+    <section class="category-section">
+        <div class="category-header">
+            <h2>Japanese</h2>
+            <p>Bilingual communication, Japan-related experience, and cross-cultural work.</p>
+        </div>
+        <div class="grid">
+    
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">日本語プロフィール</h3>
+                    <span class="badge live">Live</span>
+                </div>
+                <div class="card-url">jp.hamednouri.com</div>
+                <p class="card-desc">Japanese-language professional profile for bilingual communication, Japan-related experience, and cross-cultural work.</p>
+                <a href="https://jp.hamednouri.com" class="btn-live btn">Visit</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Japanese Bilingual Profile</h3>
+                    <span class="badge live">Live</span>
+                </div>
+                <div class="card-url">japanese.hamednouri.com</div>
+                <p class="card-desc">English/Japanese bilingual experience, Japan work history, localization-adjacent skills, and cross-cultural communication.</p>
+                <a href="https://japanese.hamednouri.com" class="btn-live btn">Visit</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Localization & Cross-Cultural Communication</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">localization.hamednouri.com</div>
+                <p class="card-desc">Localization-adjacent communication, bilingual content, Japanese market support, and cross-cultural messaging.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Translation & Language Support</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">translation.hamednouri.com</div>
+                <p class="card-desc">Translation-adjacent work, bilingual review, language learning resources, and multilingual content coordination.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Bilingual Communication</h3>
+                    <span class="badge live">Live</span>
+                </div>
+                <div class="card-url">bilingual.hamednouri.com</div>
+                <p class="card-desc">Bilingual English/Japanese communication, stakeholder support, documentation, and international coordination.</p>
+                <a href="https://bilingual.hamednouri.com" class="btn-live btn">Visit</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Japan Experience</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">japan.hamednouri.com</div>
+                <p class="card-desc">Japan-based work, JET Programme experience, Tokyo education work, cultural exchange, and Japan-facing projects.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">JET Programme Experience</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">jet.hamednouri.com</div>
+                <p class="card-desc">JET Programme teaching, curriculum, presentation coaching, cultural ambassador work, and Japan education experience.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Teaching & Curriculum</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">teacher.hamednouri.com</div>
+                <p class="card-desc">ESL, Japanese-adjacent education, curriculum design, training, workshops, and classroom communication.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Education & Learning Design</h3>
+                    <span class="badge live">Live</span>
+                </div>
+                <div class="card-url">education.hamednouri.com</div>
+                <p class="card-desc">Education projects, learning products, curriculum, training materials, language learning, and learning app work.</p>
+                <a href="https://education.hamednouri.com" class="btn-live btn">Visit</a>
+            </div>
+        
+        </div>
+    </section>
+    
+    <section class="category-section">
+        <div class="category-header">
+            <h2>Business</h2>
+            <p>Product, marketing, operations, workflow systems, and strategic communication.</p>
+        </div>
+        <div class="grid">
+    
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Business Profile</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">business.hamednouri.com</div>
+                <p class="card-desc">Business-facing profile for product, marketing, operations, workflow systems, and strategic communication work.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Product & Marketing</h3>
+                    <span class="badge live">Live</span>
+                </div>
+                <div class="card-url">product.hamednouri.com</div>
+                <p class="card-desc">Product management, product communication, launch support, marketing content, and product lifecycle coordination.</p>
+                <a href="https://product.hamednouri.com" class="btn-live btn">Visit</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Marketing & Content Strategy</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">marketing.hamednouri.com</div>
+                <p class="card-desc">Marketing communications, content campaigns, audience engagement, product messaging, and brand growth.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Consulting</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">consulting.hamednouri.com</div>
+                <p class="card-desc">Consulting-oriented profile for communications, content systems, implementation support, and workflow improvement.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Operations</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">operations.hamednouri.com</div>
+                <p class="card-desc">Operations coordination, contributor workflows, project organization, process documentation, and team systems.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Project Management</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">project.hamednouri.com</div>
+                <p class="card-desc">Project coordination, timelines, delivery support, implementation planning, and cross-functional execution.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">AI Workflow Systems</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">ai.hamednouri.com</div>
+                <p class="card-desc">AI-assisted workflows, Antigravity site building, GitHub/Cloudflare deployment, automation, and productivity systems.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Automation & Workflows</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">automation.hamednouri.com</div>
+                <p class="card-desc">Desktop automation, yabai/Raycast workflows, terminal scripts, Obsidian systems, and project workspace automation.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Systems & Tools</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">systems.hamednouri.com</div>
+                <p class="card-desc">Systems thinking, workflow tools, knowledge systems, AI-assisted processes, and technical operations support.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategy</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">strategy.hamednouri.com</div>
+                <p class="card-desc">Communication strategy, content strategy, product strategy, campaign planning, and adoption strategy.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">SaaS Adoption & Enablement</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">saas.hamednouri.com</div>
+                <p class="card-desc">SaaS rollout support, customer enablement, implementation communication, documentation, and adoption measurement.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Braze Delivery Profile</h3>
+                    <span class="badge planned">Planned</span>
+                </div>
+                <div class="card-url">braze.hamednouri.com</div>
+                <p class="card-desc">Braze-specific delivery, implementation, customer enablement, software adoption, and professional services profile.</p>
+                <a href="#" class="btn-disabled btn">Coming Soon</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Resume Hub</h3>
+                    <span class="badge broken">Broken</span>
+                </div>
+                <div class="card-url">resume.hamednouri.com</div>
+                <p class="card-desc">A central place for selected role-specific resumes, PDFs, and application-focused professional profiles.</p>
+                <a href="#" class="btn-disabled btn">Unavailable</a>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Hub</h3>
+                    <span class="badge live">Live</span>
+                </div>
+                <div class="card-url">hub.hamednouri.com</div>
+                <p class="card-desc">Central hub that links all role-specific sites, creative profiles, Japanese profiles, and business profiles.</p>
+                <a href="https://hub.hamednouri.com" class="btn-live btn">Visit</a>
+            </div>
+        
+        </div>
+    </section>
+    
+</main>
+
+<footer>
+    <div class="footer-text">Hamed Nouri</div>
+    <p class="footer-desc">Role-specific sites, creative work, Japanese-language profiles, communication projects, and business-focused work.</p>
+    <div class="footer-links">
+        <a href="https://portfolio.hamednouri.com">Home</a>
+        <a href="https://hub.hamednouri.com">Sites</a>
+        <a href="https://resume.hamednouri.com">Resume</a>
+        <a href="https://delivery.hamednouri.com/#contact">Contact</a>
+        <a href="https://www.linkedin.com/in/hamednouri">LinkedIn</a>
+        <a href="mailto:work@hamednouri.com">Email</a>
     </div>
+</footer>
+
 </body>
 </html>
