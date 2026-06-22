@@ -1,9 +1,17 @@
 {
-  "checkedAt": "2026-06-22T22:00:51.188Z",
+  "checkedAt": "2026-06-22T23:41:57.869Z",
   "sites": [
     {
       "name": "AI",
       "url": "https://ai.hamednouri.com",
+      "category": "Portfolio",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "audio.hamednouri.com",
+      "url": "https://audio.hamednouri.com",
       "category": "Portfolio",
       "status": "live",
       "httpStatus": 200,
@@ -18,11 +26,67 @@
       "responseMs": null
     },
     {
+      "name": "automation.hamednouri.com",
+      "url": "https://automation.hamednouri.com",
+      "category": "Portfolio",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
       "name": "Books",
       "url": "https://books.hamednouri.com",
       "category": "Portfolio",
       "status": "live",
       "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "business.hamednouri.com",
+      "url": "https://business.hamednouri.com",
+      "category": "Portfolio",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "cloud.hamednouri.com",
+      "url": "https://cloud.hamednouri.com",
+      "category": "Portfolio",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "Comms",
+      "url": "https://comms.hamednouri.com",
+      "category": "Additional",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "Consulting",
+      "url": "https://consulting.hamednouri.com",
+      "category": "Additional",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "Content",
+      "url": "https://content.hamednouri.com",
+      "category": "Additional",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "courses.hamednouri.com",
+      "url": "https://courses.hamednouri.com",
+      "category": "Portfolio",
+      "status": "down",
+      "httpStatus": null,
       "responseMs": null
     },
     {
@@ -36,6 +100,38 @@
     {
       "name": "dev.hamednouri.com",
       "url": "https://dev.hamednouri.com",
+      "category": "Portfolio",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "Docs",
+      "url": "https://docs.hamednouri.com",
+      "category": "Additional",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "education.hamednouri.com",
+      "url": "https://education.hamednouri.com",
+      "category": "Portfolio",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "esl.hamednouri.com",
+      "url": "https://esl.hamednouri.com",
+      "category": "Portfolio",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "founder.hamednouri.com",
+      "url": "https://founder.hamednouri.com",
       "category": "Portfolio",
       "status": "live",
       "httpStatus": 200,
@@ -74,6 +170,30 @@
       "responseMs": null
     },
     {
+      "name": "islamic.hamednouri.com",
+      "url": "https://islamic.hamednouri.com",
+      "category": "Portfolio",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "IT",
+      "url": "https://it.hamednouri.com",
+      "category": "Additional",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "japanese.hamednouri.com",
+      "url": "https://japanese.hamednouri.com",
+      "category": "Portfolio",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
       "name": "jp.hamednouri.com/solutions",
       "url": "https://jp.hamednouri.com/solutions",
       "category": "Portfolio",
@@ -90,8 +210,48 @@
       "responseMs": null
     },
     {
+      "name": "Entrepreneur",
+      "url": "https://entrepreneur.hamednouri.com",
+      "category": "Additional",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "linguist.hamednouri.com",
+      "url": "https://linguist.hamednouri.com",
+      "category": "Portfolio",
+      "status": "down",
+      "httpStatus": null,
+      "responseMs": null
+    },
+    {
+      "name": "Marketing",
+      "url": "https://marketing.hamednouri.com",
+      "category": "Additional",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
       "name": "Mindful",
       "url": "https://mindful.hamednouri.com",
+      "category": "Portfolio",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "Networking",
+      "url": "https://networking.hamednouri.com",
+      "category": "Additional",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "ops.hamednouri.com",
+      "url": "https://ops.hamednouri.com",
       "category": "Portfolio",
       "status": "live",
       "httpStatus": 200,
@@ -106,9 +266,41 @@
       "responseMs": null
     },
     {
+      "name": "Portfolio",
+      "url": "https://portfolio.hamednouri.com",
+      "category": "Additional",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "products.hamednouri.com",
+      "url": "https://products.hamednouri.com",
+      "category": "Portfolio",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
       "name": "Resume",
       "url": "https://resume.hamednouri.com",
       "category": "Main",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "sensei.hamednouri.com",
+      "url": "https://sensei.hamednouri.com",
+      "category": "Portfolio",
+      "status": "down",
+      "httpStatus": null,
+      "responseMs": null
+    },
+    {
+      "name": "seo.hamednouri.com",
+      "url": "https://seo.hamednouri.com",
+      "category": "Portfolio",
       "status": "live",
       "httpStatus": 200,
       "responseMs": null
@@ -122,8 +314,24 @@
       "responseMs": null
     },
     {
+      "name": "startup.hamednouri.com",
+      "url": "https://startup.hamednouri.com",
+      "category": "Portfolio",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
       "name": "Systems",
       "url": "https://systems.hamednouri.com",
+      "category": "Portfolio",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "teaching.hamednouri.com",
+      "url": "https://teaching.hamednouri.com",
       "category": "Portfolio",
       "status": "live",
       "httpStatus": 200,
@@ -133,6 +341,14 @@
       "name": "UX",
       "url": "https://ux.hamednouri.com",
       "category": "Additional",
+      "status": "live",
+      "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "ventures.hamednouri.com",
+      "url": "https://ventures.hamednouri.com",
+      "category": "Portfolio",
       "status": "live",
       "httpStatus": 200,
       "responseMs": null
@@ -159,6 +375,14 @@
       "category": "Portfolio",
       "status": "live",
       "httpStatus": 200,
+      "responseMs": null
+    },
+    {
+      "name": "wish.hamednouri.com",
+      "url": "https://wish.hamednouri.com",
+      "category": "Portfolio",
+      "status": "down",
+      "httpStatus": null,
       "responseMs": null
     },
     {
@@ -194,80 +418,8 @@
       "responseMs": null
     },
     {
-      "name": "Entrepreneur",
-      "url": "https://entrepreneur.hamednouri.com",
-      "category": "Additional",
-      "status": "unknown",
-      "httpStatus": null,
-      "responseMs": null
-    },
-    {
-      "name": "Networking",
-      "url": "https://networking.hamednouri.com",
-      "category": "Additional",
-      "status": "unknown",
-      "httpStatus": null,
-      "responseMs": null
-    },
-    {
-      "name": "IT",
-      "url": "https://it.hamednouri.com",
-      "category": "Additional",
-      "status": "unknown",
-      "httpStatus": null,
-      "responseMs": null
-    },
-    {
-      "name": "Consulting",
-      "url": "https://consulting.hamednouri.com",
-      "category": "Additional",
-      "status": "unknown",
-      "httpStatus": null,
-      "responseMs": null
-    },
-    {
       "name": "Creative",
       "url": "https://creative.hamednouri.com",
-      "category": "Additional",
-      "status": "unknown",
-      "httpStatus": null,
-      "responseMs": null
-    },
-    {
-      "name": "Marketing",
-      "url": "https://marketing.hamednouri.com",
-      "category": "Additional",
-      "status": "unknown",
-      "httpStatus": null,
-      "responseMs": null
-    },
-    {
-      "name": "Content",
-      "url": "https://content.hamednouri.com",
-      "category": "Additional",
-      "status": "unknown",
-      "httpStatus": null,
-      "responseMs": null
-    },
-    {
-      "name": "Comms",
-      "url": "https://comms.hamednouri.com",
-      "category": "Additional",
-      "status": "unknown",
-      "httpStatus": null,
-      "responseMs": null
-    },
-    {
-      "name": "Docs",
-      "url": "https://docs.hamednouri.com",
-      "category": "Additional",
-      "status": "unknown",
-      "httpStatus": null,
-      "responseMs": null
-    },
-    {
-      "name": "Portfolio",
-      "url": "https://portfolio.hamednouri.com",
       "category": "Additional",
       "status": "unknown",
       "httpStatus": null,
