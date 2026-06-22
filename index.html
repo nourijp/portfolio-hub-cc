@@ -152,9 +152,6 @@
   <div id="status-bar">
     <span id="status-msg"><span class="dot checking" id="status-dot"></span> Checking live status…</span>
     <button id="refresh-btn" onclick="loadStatus()" disabled>↻ Refresh</button>
-    <a class="ext-status-link" href="https://stats.uptimerobot.com/hamednouri" target="_blank" rel="noopener">
-      📊 Full uptime history
-    </a>
   </div>
 </header>
 
@@ -224,8 +221,6 @@ const CATEGORIES = {
 
 // ── Status API endpoint (GitHub Actions–generated status.json) ────────────────
 const STATUS_JSON_URL = "/status.json";
-// Fallback: Cloudflare Worker (if deployed later)
-// const STATUS_JSON_URL = "https://status-api.hamednouri.com/status";
 
 let statusMap = {};   // url → { status, responseMs, httpStatus }
 let lastChecked = null;
@@ -251,17 +246,37 @@ async function loadStatus() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
 
-    statusMap = {};
-    for (const site of data.sites || []) {
-      statusMap[normalizeUrl(site.url)] = site;
+    if (data.checkedAt) {
+      lastChecked = new Date(data.checkedAt);
+      const diffMinutes = (Date.now() - lastChecked.getTime()) / 60000;
+      
+      // Handle staleness (> 20 mins)
+      if (diffMinutes > 20) {
+        msg.innerHTML = `<span class="dot warning" id="status-dot"></span> Status unavailable (stale data)`;
+        // Data is stale, but we still render what we have or mark them unknown?
+        // Requirements say: "If status.json is stale... show 'Status unavailable' or 'Last checked unavailable.' Do not mark every site as down."
+        // We'll leave the cards as unknown.
+        statusMap = {};
+        for (const site of data.sites || []) {
+          statusMap[normalizeUrl(site.url)] = { ...site, status: "unknown" };
+        }
+      } else {
+        statusMap = {};
+        for (const site of data.sites || []) {
+          statusMap[normalizeUrl(site.url)] = site;
+        }
+        const timeStr = lastChecked.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+        msg.innerHTML = `<span class="dot live" id="status-dot"></span> Live status loaded · last checked ${timeStr}`;
+      }
+    } else {
+      throw new Error("Missing checkedAt");
     }
-    lastChecked = data.checkedAt ? new Date(data.checkedAt) : new Date();
 
     renderCards();
-    const timeStr = lastChecked.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-    msg.innerHTML = `<span class="dot live" id="status-dot"></span> Live status loaded · last checked ${timeStr}`;
   } catch (err) {
-    msg.innerHTML = `<span class="dot error" id="status-dot"></span> Live status temporarily unavailable. Links may still work.`;
+    msg.innerHTML = `<span class="dot error" id="status-dot"></span> Status unavailable`;
+    statusMap = {}; // Mark all unknown
+    renderCards();
     console.warn("Status fetch failed:", err);
   } finally {
     btn.disabled = false;
