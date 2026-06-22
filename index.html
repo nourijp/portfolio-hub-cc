@@ -180,41 +180,60 @@
 <script>
 // ── Site directory (source of truth for card rendering) ──────────────────────
 const CATEGORIES = {
-  "Portfolio": {
-    label: "Portfolio Sites",
-    desc: "Targeted professional sites for specific roles and audiences.",
-    sites: [
-      { name: "Delivery",           url: "https://delivery.hamednouri.com",      desc: "Implementation delivery, SaaS rollout, customer enablement." },
-      { name: "Solutions",          url: "https://solutions.hamednouri.com",      desc: "Bilingual technical solutions & SaaS implementation consulting." },
-      { name: "Japanese Solutions", url: "https://jp.hamednouri.com/solutions",   desc: "日英対応テクニカルソリューション・SaaS導入支援（日本語版）" },
-      { name: "Learning",           url: "https://learning.hamednouri.com",       desc: "Learning experience design, training, and educational multimedia." },
-      { name: "Writing",            url: "https://writing.hamednouri.com",        desc: "Writing portfolio — essays, communications, and content." },
-      { name: "Growth",             url: "https://growth.hamednouri.com",         desc: "Audience growth, community, and content strategy work." },
-      { name: "Systems",            url: "https://systems.hamednouri.com",        desc: "AI-assisted workflows, automation, and technical operations." },
-      { name: "AI",                 url: "https://ai.hamednouri.com",             desc: "AI workflow systems and automation project portfolio." },
-      { name: "Resume",             url: "https://resume.hamednouri.com",         desc: "Role-specific resumes and downloadable PDF profiles." },
-    ]
-  },
-  "Creative": {
-    label: "Creative",
-    desc: "Storytelling, comics, manga, writing, and creative projects.",
-    sites: [
-      { name: "Author",             url: "https://author.hamednouri.com",         desc: "Books, comics, creative writing, and storytelling projects." },
-      { name: "Books",              url: "https://books.hamednouri.com",           desc: "Published books, reading lists, and book-related projects." },
-      { name: "Web",                url: "https://web.hamednouri.com",             desc: "Web design, front-end, and digital project portfolio." },
-      { name: "Voice",              url: "https://voice.hamednouri.com",           desc: "Voice, audio, podcasts, and spoken content." },
-      { name: "Video",              url: "https://video.hamednouri.com",           desc: "Video, documentary, and multimedia work." },
-      { name: "Photo",              url: "https://photo.hamednouri.com",           desc: "Photography and visual content portfolio." },
-      { name: "Mindful",            url: "https://mindful.hamednouri.com",         desc: "Mindfulness, reflection, and wellness-adjacent projects." },
-    ]
-  },
   "Main": {
     label: "Main",
     desc: "Primary portfolio and hub pages.",
     sites: [
       { name: "Main Portfolio",     url: "https://hamednouri.com",                desc: "Main professional portfolio — Hamed Nouri." },
       { name: "Hub",                url: "https://hub.hamednouri.com",            desc: "This page — central directory for all portfolio subdomains." },
-      { name: "JP Solutions",       url: "https://jp-solutions.hamednouri.com",   desc: "Alias redirect → jp.hamednouri.com/solutions" },
+      { name: "Resume",             url: "https://resume.hamednouri.com",         desc: "Role-specific resumes and downloadable PDF profiles." },
+    ]
+  },
+  "Portfolio": {
+    label: "Role-Specific Sites",
+    desc: "Targeted professional sites for specific roles and audiences.",
+    sites: [
+      { name: "Delivery",           url: "https://delivery.hamednouri.com",       desc: "Implementation delivery, SaaS rollout, customer enablement." },
+      { name: "Learning",           url: "https://learning.hamednouri.com",       desc: "Learning experience design, training, and educational multimedia." },
+      { name: "Writing",            url: "https://writing.hamednouri.com",        desc: "Writing portfolio — essays, communications, and content." },
+      { name: "Apps",               url: "https://apps.hamednouri.com",           desc: "Web applications and functional software projects." },
+      { name: "Growth",             url: "https://growth.hamednouri.com",         desc: "Audience growth, community, and content strategy work." },
+      { name: "Web",                url: "https://web.hamednouri.com",            desc: "Web design, front-end, and digital project portfolio." },
+      { name: "Books",              url: "https://books.hamednouri.com",          desc: "Published books, reading lists, and book-related projects." },
+      { name: "Author",             url: "https://author.hamednouri.com",         desc: "Books, comics, creative writing, and storytelling projects." },
+      { name: "Voice",              url: "https://voice.hamednouri.com",          desc: "Voice, audio, podcasts, and spoken content." },
+      { name: "Video",              url: "https://video.hamednouri.com",          desc: "Video, documentary, and multimedia work." },
+      { name: "Photo",              url: "https://photo.hamednouri.com",          desc: "Photography and visual content portfolio." },
+      { name: "AI",                 url: "https://ai.hamednouri.com",             desc: "AI workflow systems and automation project portfolio." },
+      { name: "Mindful",            url: "https://mindful.hamednouri.com",        desc: "Mindfulness, reflection, and wellness-adjacent projects." },
+      { name: "Systems",            url: "https://systems.hamednouri.com",        desc: "AI-assisted workflows, automation, and technical operations." },
+    ]
+  },
+  "Bilingual": {
+    label: "Japanese / Bilingual / Solutions",
+    desc: "Japanese language and bilingual technical consulting.",
+    sites: [
+      { name: "Japanese Portfolio", url: "https://jp.hamednouri.com",             desc: "Japanese-language professional portfolio." },
+      { name: "Solutions",          url: "https://solutions.hamednouri.com",      desc: "Bilingual technical solutions & SaaS implementation consulting." },
+      { name: "JP Solutions",       url: "https://jp-solutions.hamednouri.com",   desc: "日英対応テクニカルソリューション・SaaS導入支援（日本語版）" },
+    ]
+  },
+  "Additional": {
+    label: "Additional Areas",
+    desc: "Other technical and creative domains.",
+    sites: [
+      { name: "Security",           url: "https://security.hamednouri.com",       desc: "Security operations and technical insights." },
+      { name: "UX",                 url: "https://ux.hamednouri.com",             desc: "User experience and interface design projects." },
+      { name: "Entrepreneur",       url: "https://entrepreneur.hamednouri.com",   desc: "Business building, strategy, and independent ventures." },
+      { name: "Networking",         url: "https://networking.hamednouri.com",     desc: "Technical networking and infrastructure." },
+      { name: "IT",                 url: "https://it.hamednouri.com",             desc: "Information technology and systems administration." },
+      { name: "Consulting",         url: "https://consulting.hamednouri.com",     desc: "Independent consulting services." },
+      { name: "Creative",           url: "https://creative.hamednouri.com",       desc: "Creative projects and artistic exploration." },
+      { name: "Marketing",          url: "https://marketing.hamednouri.com",      desc: "Product marketing and go-to-market strategies." },
+      { name: "Content",            url: "https://content.hamednouri.com",        desc: "Content creation and distribution." },
+      { name: "Comms",              url: "https://comms.hamednouri.com",          desc: "Communications strategy and internal comms." },
+      { name: "Docs",               url: "https://docs.hamednouri.com",           desc: "Technical documentation and writing." },
+      { name: "Portfolio",          url: "https://portfolio.hamednouri.com",      desc: "General portfolio hub." }
     ]
   }
 };

@@ -9,11 +9,16 @@ if (!UR_KEY) {
 }
 
 const SITES_META = {
+  // Core / hub / main
   "https://hamednouri.com":              { name: "Main Portfolio",     category: "Main" },
   "https://hub.hamednouri.com":          { name: "Hub",                category: "Main" },
+  "https://resume.hamednouri.com":       { name: "Resume",             category: "Main" },
+
+  // Role-specific portfolio sites
   "https://delivery.hamednouri.com":     { name: "Delivery",           category: "Portfolio" },
   "https://learning.hamednouri.com":     { name: "Learning",           category: "Portfolio" },
   "https://writing.hamednouri.com":      { name: "Writing",            category: "Portfolio" },
+  "https://apps.hamednouri.com":         { name: "Apps",               category: "Portfolio" },
   "https://growth.hamednouri.com":       { name: "Growth",             category: "Portfolio" },
   "https://web.hamednouri.com":          { name: "Web",                category: "Portfolio" },
   "https://books.hamednouri.com":        { name: "Books",              category: "Portfolio" },
@@ -24,10 +29,25 @@ const SITES_META = {
   "https://ai.hamednouri.com":           { name: "AI",                 category: "Portfolio" },
   "https://mindful.hamednouri.com":      { name: "Mindful",            category: "Portfolio" },
   "https://systems.hamednouri.com":      { name: "Systems",            category: "Portfolio" },
-  "https://resume.hamednouri.com":       { name: "Resume",             category: "Portfolio" },
-  "https://solutions.hamednouri.com":    { name: "Solutions",          category: "Portfolio" },
-  "https://jp.hamednouri.com/solutions": { name: "Japanese Solutions", category: "Portfolio" },
-  "https://jp-solutions.hamednouri.com": { name: "JP Solutions Alias", category: "Portfolio" },
+
+  // Japanese / bilingual / solutions sites
+  "https://jp.hamednouri.com":           { name: "Japanese Portfolio", category: "Bilingual" },
+  "https://solutions.hamednouri.com":    { name: "Solutions",          category: "Bilingual" },
+  "https://jp-solutions.hamednouri.com": { name: "JP Solutions",       category: "Bilingual" },
+
+  // Additional areas
+  "https://security.hamednouri.com":     { name: "Security",           category: "Additional" },
+  "https://ux.hamednouri.com":           { name: "UX",                 category: "Additional" },
+  "https://entrepreneur.hamednouri.com": { name: "Entrepreneur",       category: "Additional" },
+  "https://networking.hamednouri.com":   { name: "Networking",         category: "Additional" },
+  "https://it.hamednouri.com":           { name: "IT",                 category: "Additional" },
+  "https://consulting.hamednouri.com":   { name: "Consulting",         category: "Additional" },
+  "https://creative.hamednouri.com":     { name: "Creative",           category: "Additional" },
+  "https://marketing.hamednouri.com":    { name: "Marketing",          category: "Additional" },
+  "https://content.hamednouri.com":      { name: "Content",            category: "Additional" },
+  "https://comms.hamednouri.com":        { name: "Comms",              category: "Additional" },
+  "https://docs.hamednouri.com":         { name: "Docs",               category: "Additional" },
+  "https://portfolio.hamednouri.com":    { name: "Portfolio",          category: "Additional" }
 };
 
 function mapUrStatus(code) {
