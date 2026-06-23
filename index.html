@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hamed Nouri — Portfolio Hub</title>
-  <meta name="description" content="Central directory for Hamed Nouri's portfolio subdomains with live status monitoring." />
+  <title>Hamed Nouri — nouri.cc Hub</title>
+  <meta name="description" content="Central directory for Hamed Nouri's nouri.cc portfolio subdomains with live status monitoring." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -147,8 +147,8 @@
 <body>
 
 <header>
-  <h1>Hamed Nouri — Hub</h1>
-  <p>A central directory for role-specific sites, creative profiles, Japanese-language work, and portfolio subdomains.</p>
+  <h1>Hamed Nouri — nouri.cc Hub</h1>
+  <p>A central directory for projects hosted under the nouri.cc domain.</p>
   <div id="status-bar">
     <span id="status-msg"><span class="dot checking" id="status-dot"></span> Checking live status…</span>
     <button id="refresh-btn" onclick="loadStatus()" disabled>↻ Refresh</button>
@@ -166,12 +166,9 @@
 
 <footer>
   <div class="footer-links">
-    <a href="https://hamednouri.com">Portfolio</a>
-    <a href="https://delivery.hamednouri.com">Delivery</a>
-    <a href="https://solutions.hamednouri.com">Solutions</a>
-    <a href="https://jp.hamednouri.com">Japanese</a>
-    <a href="https://resume.hamednouri.com">Resume</a>
-    <a href="mailto:work@hamednouri.com">Email</a>
+    <a href="https://hamednouri.com">Main Portfolio</a>
+    <a href="https://hub.hamednouri.com">.com Hub</a>
+    <a href="mailto:work@nouri.cc">Email</a>
     <a href="https://www.linkedin.com/in/hamednouri" target="_blank" rel="noopener">LinkedIn</a>
   </div>
   <p>© 2025 Hamed Nouri — Denton, TX</p>
@@ -180,103 +177,26 @@
 <script>
 // ── Site directory (source of truth for card rendering) ──────────────────────
 const CATEGORIES = {
-  "Professional": {
-    label: "Professional & Corporate",
-    desc: "Core professional portfolio and services.",
+  "Main": {
+    label: "Main & Hub",
+    desc: "Central resources on the .cc domain.",
     sites: [
-      { name: "Main Portfolio",     url: "https://hamednouri.com",               desc: "Central professional portfolio and biography." },
-      { name: "Hub",                url: "https://hub.hamednouri.com",           desc: "Central directory for all portfolio subdomains." },
-      { name: "Resume",             url: "https://resume.hamednouri.com",        desc: "Professional resumes and career documentation." },
-      { name: "Solutions",          url: "https://solutions.hamednouri.com",     desc: "Bilingual SaaS implementation & technical consulting." },
-      { name: "Delivery",           url: "https://delivery.hamednouri.com",      desc: "Project delivery, rollout, and enablement services." },
-      { name: "Consulting",         url: "https://consulting.hamednouri.com",    desc: "Independent advisory and consulting services." },
-      { name: "Portfolio",          url: "https://portfolio.hamednouri.com",     desc: "General portfolio hub." }
-    ]
-  },
-  "Technical": {
-    label: "Technical & Systems",
-    desc: "Development, AI, security, and infrastructure operations.",
-    sites: [
-      { name: "AI",                 url: "https://ai.hamednouri.com",            desc: "AI workflow automation and technical research." },
-      { name: "Web",                url: "https://web.hamednouri.com",           desc: "Front-end engineering and web architecture." },
-      { name: "Security",           url: "https://security.hamednouri.com",      desc: "SecOps and systems integrity documentation." },
-      { name: "IT",                 url: "https://it.hamednouri.com",            desc: "Systems administration and IT operations." },
-      { name: "Networking",         url: "https://networking.hamednouri.com",    desc: "Network architecture and connectivity tools." },
-      { name: "Apps",               url: "https://apps.hamednouri.com",          desc: "Functional web applications and prototypes." },
-      { name: "Systems",            url: "https://systems.hamednouri.com",       desc: "AI-assisted workflows, automation, and technical operations." },
-      { name: "UX",                 url: "https://ux.hamednouri.com",            desc: "User experience and interface design projects." },
-      { name: "Dev",                url: "https://dev.hamednouri.com",           desc: "Software development projects and code." },
-      { name: "Ops",                url: "https://ops.hamednouri.com",           desc: "Operations, DevOps, and infrastructure." },
-      { name: "Product",            url: "https://product.hamednouri.com",       desc: "Product management and roadmapping." },
-      { name: "Automation [In Progress]", url: "https://automation.hamednouri.com", desc: "Workflow automation and systems integration." },
-      { name: "Cloud [In Progress]", url: "https://cloud.hamednouri.com",        desc: "Cloud infrastructure and architecture." }
-    ]
-  },
-  "Content": {
-    label: "Content, Media & Creative",
-    desc: "Publishing, multimedia, and creative storytelling.",
-    sites: [
-      { name: "Writing",            url: "https://writing.hamednouri.com",       desc: "Essays, articles, and long-form content." },
-      { name: "Books",              url: "https://books.hamednouri.com",         desc: "Published books and reading curation." },
-      { name: "Author",             url: "https://author.hamednouri.com",        desc: "Creative writing and fictional project hub." },
-      { name: "Voice",              url: "https://voice.hamednouri.com",         desc: "Podcasting, audio, and spoken-word projects." },
-      { name: "Video",              url: "https://video.hamednouri.com",         desc: "Documentary, editing, and multimedia work." },
-      { name: "Photo",              url: "https://photo.hamednouri.com",         desc: "Visual storytelling and photography." },
-      { name: "Creative",           url: "https://creative.hamednouri.com",      desc: "Experimental art and creative projects." },
-      { name: "Manga",              url: "https://manga.hamednouri.com",         desc: "Manga, comics, and illustrated storytelling." },
-      { name: "Comics",             url: "https://comics.hamednouri.com",        desc: "Comics and sequential art projects." },
-      { name: "Comms",              url: "https://comms.hamednouri.com",         desc: "Communications strategy and internal comms." },
-      { name: "Docs",               url: "https://docs.hamednouri.com",          desc: "Technical documentation and writing." },
-      { name: "Design [In Progress]", url: "https://design.hamednouri.com",      desc: "Graphic and visual design portfolio." },
-      { name: "Podcast [In Progress]", url: "https://podcast.hamednouri.com",    desc: "Podcasts and audio storytelling." },
-      { name: "Audio [In Progress]", url: "https://audio.hamednouri.com",        desc: "Audio editing and voice work." },
-      { name: "Community [In Progress]", url: "https://community.hamednouri.com", desc: "Community building and management." }
+      { name: "Hub",                url: "https://hub.nouri.cc",           desc: "This page — central directory for all nouri.cc subdomains." }
     ]
   },
   "Education": {
-    label: "Education & Learning",
-    desc: "Learning experience design, language, and teaching.",
+    label: "Education & Teaching",
+    desc: "Teaching, instruction, and language resources.",
     sites: [
-      { name: "Learning",           url: "https://learning.hamednouri.com",      desc: "Instructional design and training materials." },
-      { name: "Growth",             url: "https://growth.hamednouri.com",        desc: "Audience building and content strategy." },
-      { name: "Mindful",            url: "https://mindful.hamednouri.com",       desc: "Well-being, philosophy, and mindful practice." },
-      { name: "Education",          url: "https://education.hamednouri.com",     desc: "Educational projects and learning resources." },
-      { name: "Teaching",           url: "https://teaching.hamednouri.com",      desc: "Teaching portfolio and classroom resources." },
-      { name: "Courses [In Progress]", url: "https://courses.hamednouri.com",    desc: "Courses and structured curriculum design." },
-      { name: "Japanese",           url: "https://japanese.hamednouri.com",      desc: "Japanese language learning and resources." },
-      { name: "ESL [In Progress]",  url: "https://esl.hamednouri.com",           desc: "English as a Second Language teaching resources." },
-      { name: "Islamic [In Progress]", url: "https://islamic.hamednouri.com",    desc: "Islamic learning resources and apps." },
-      { name: "Wish [In Progress]", url: "https://wish.hamednouri.com",          desc: "Goals, aspirations, and curated wish list." }
+      { name: "Sensei",             url: "https://sensei.nouri.cc",        desc: "Teaching portfolio and Japanese instruction." }
     ]
   },
-  "Bilingual": {
-    label: "Japanese & International",
-    desc: "Bilingual resources and market-specific solutions.",
+  "Personal": {
+    label: "Personal & Events",
+    desc: "Personal projects and event sites.",
     sites: [
-      { name: "Japanese Portfolio", url: "https://jp.hamednouri.com",            desc: "JP-language professional site." },
-      { name: "JP Solutions",       url: "https://jp-solutions.hamednouri.com",  desc: "Japanese business and technical consulting." }
-    ]
-  },
-  "Entrepreneurship": {
-    label: "Entrepreneurship & Ventures",
-    desc: "Business, startup, and founder-related work.",
-    sites: [
-      { name: "Ventures",           url: "https://ventures.hamednouri.com",      desc: "Business ventures and investment projects." },
-      { name: "Entrepreneur",       url: "https://entrepreneur.hamednouri.com",  desc: "Business building, strategy, and independent ventures." },
-      { name: "Business [In Progress]", url: "https://business.hamednouri.com",  desc: "Business and commercial projects." },
-      { name: "Founder [In Progress]",  url: "https://founder.hamednouri.com",   desc: "Founder initiatives and projects." },
-      { name: "Startup [In Progress]",  url: "https://startup.hamednouri.com",   desc: "Startup ventures and advisory." },
-      { name: "Products [In Progress]", url: "https://products.hamednouri.com",  desc: "Product management and strategy." }
-    ]
-  },
-  "Marketing": {
-    label: "Marketing & Growth",
-    desc: "Advertising, SEO, and audience growth.",
-    sites: [
-      { name: "Marketing",          url: "https://marketing.hamednouri.com",     desc: "Product marketing and go-to-market strategies." },
-      { name: "Content",            url: "https://content.hamednouri.com",       desc: "Content creation and distribution." },
-      { name: "Ads [In Progress]",  url: "https://ads.hamednouri.com",           desc: "Advertising campaigns and copywriting." },
-      { name: "SEO [In Progress]",  url: "https://seo.hamednouri.com",           desc: "Search Engine Optimization projects." }
+      { name: "Wedding",            url: "https://wedding.nouri.cc",       desc: "Wedding information and RSVP site." },
+      { name: "Wedding 2",          url: "https://wedding2.nouri.cc",      desc: "Secondary wedding site." }
     ]
   }
 };
