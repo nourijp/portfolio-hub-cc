@@ -81,6 +81,10 @@ const SITES_META = {
   // Marketing & Growth
   "https://ads.hamednouri.com":          { name: "Ads",                category: "Marketing" },
   "https://seo.hamednouri.com":          { name: "SEO",                category: "Marketing" },
+
+  // New: wish and courses
+  "https://wish.hamednouri.com":         { name: "Wish",               category: "Education" },
+  "https://courses.hamednouri.com":      { name: "Courses",            category: "Education" },
 };
 
 function mapUrStatus(code) {

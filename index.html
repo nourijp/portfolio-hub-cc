@@ -242,9 +242,11 @@ const CATEGORIES = {
       { name: "Mindful",            url: "https://mindful.hamednouri.com",       desc: "Well-being, philosophy, and mindful practice." },
       { name: "Education",          url: "https://education.hamednouri.com",     desc: "Educational projects and learning resources." },
       { name: "Teaching",           url: "https://teaching.hamednouri.com",      desc: "Teaching portfolio and classroom resources." },
+      { name: "Courses [In Progress]", url: "https://courses.hamednouri.com",    desc: "Courses and structured curriculum design." },
       { name: "Japanese",           url: "https://japanese.hamednouri.com",      desc: "Japanese language learning and resources." },
       { name: "ESL [In Progress]",  url: "https://esl.hamednouri.com",           desc: "English as a Second Language teaching resources." },
-      { name: "Islamic [In Progress]", url: "https://islamic.hamednouri.com",    desc: "Islamic learning resources and apps." }
+      { name: "Islamic [In Progress]", url: "https://islamic.hamednouri.com",    desc: "Islamic learning resources and apps." },
+      { name: "Wish [In Progress]", url: "https://wish.hamednouri.com",          desc: "Goals, aspirations, and curated wish list." }
     ]
   },
   "Bilingual": {
@@ -302,40 +304,47 @@ async function loadStatus() {
   msg.innerHTML = `<span class="dot checking" id="status-dot"></span> Checking live status…`;
 
   try {
-    const res = await fetch(STATUS_JSON_URL + "?t=" + Date.now(), { cache: "no-store" });
+    const res = await fetch(STATUS_JSON_URL + "?ts=" + Date.now(), { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
 
-    if (data.checkedAt) {
-      lastChecked = new Date(data.checkedAt);
+    // Support both checkedAt and generated_at field names
+    const timestampStr = data.checkedAt || data.generated_at;
+    if (timestampStr) {
+      lastChecked = new Date(timestampStr);
       const diffMinutes = (Date.now() - lastChecked.getTime()) / 60000;
-      
-      // Handle staleness (> 20 mins)
-      if (diffMinutes > 20) {
-        msg.innerHTML = `<span class="dot warning" id="status-dot"></span> Status unavailable (stale data)`;
-        // Data is stale, but we still render what we have or mark them unknown?
-        // Requirements say: "If status.json is stale... show 'Status unavailable' or 'Last checked unavailable.' Do not mark every site as down."
-        // We'll leave the cards as unknown.
-        statusMap = {};
-        for (const site of data.sites || []) {
-          statusMap[normalizeUrl(site.url)] = { ...site, status: "unknown" };
-        }
+
+      // Populate statusMap with all sites regardless of staleness
+      statusMap = {};
+      for (const site of data.sites || []) {
+        statusMap[normalizeUrl(site.url)] = site;
+      }
+
+      if (diffMinutes > 60) {
+        // STALE: show last-known statuses with a warning, do not wipe them
+        const h = Math.floor(diffMinutes / 60);
+        const m = Math.round(diffMinutes % 60);
+        const ageStr = h > 0 ? `${h}h ${m}m` : `${m}m`;
+        msg.innerHTML = `<span class="dot warning" id="status-dot"></span> Status data may be stale. Last checked ${ageStr} ago. <small style="color:var(--muted)">Updates every 15 min — delays up to ~1h may occur.</small>`;
       } else {
-        statusMap = {};
-        for (const site of data.sites || []) {
-          statusMap[normalizeUrl(site.url)] = site;
-        }
         const timeStr = lastChecked.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-        msg.innerHTML = `<span class="dot live" id="status-dot"></span> Live status loaded · last checked ${timeStr}`;
+        msg.innerHTML = `<span class="dot live" id="status-dot"></span> Live status loaded · last checked ${timeStr} <small style="color:var(--muted)">· Updates every 15 min</small>`;
       }
     } else {
-      throw new Error("Missing checkedAt");
+      // No timestamp — still render whatever statuses we have
+      statusMap = {};
+      for (const site of data.sites || []) {
+        statusMap[normalizeUrl(site.url)] = site;
+      }
+      msg.innerHTML = `<span class="dot warning" id="status-dot"></span> Status loaded (timestamp unavailable)`;
+      console.warn("Status JSON missing checkedAt/generated_at field");
     }
 
     renderCards();
   } catch (err) {
-    msg.innerHTML = `<span class="dot error" id="status-dot"></span> Status unavailable`;
-    statusMap = {}; // Mark all unknown
+    // On fetch/parse failure: show Unknown (not Down), log to console
+    msg.innerHTML = `<span class="dot error" id="status-dot"></span> Status unavailable — <small>individual sites show Unknown</small>`;
+    statusMap = {}; // empty = all cards render as Unknown
     renderCards();
     console.warn("Status fetch failed:", err);
   } finally {
