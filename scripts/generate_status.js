@@ -10,9 +10,11 @@ if (!UR_KEY) {
 
 const SITES_META = {
   // Core / hub / main
-  "https://hamednouri.com":              { name: "Main Portfolio",     category: "Main" },
-  "https://hub.hamednouri.com":          { name: "Hub",                category: "Main" },
-  "https://resume.hamednouri.com":       { name: "Resume",             category: "Main" },
+  "https://hamednouri.com":              { name: "Main Portfolio",     category: "Professional" },
+  "https://hub.hamednouri.com":          { name: "Hub",                category: "Professional" },
+  "https://resume.hamednouri.com":       { name: "Resume",             category: "Professional" },
+  "https://solutions.hamednouri.com":    { name: "Solutions",          category: "Professional" },
+  "https://portfolio.hamednouri.com":    { name: "Portfolio",          category: "Professional" },
 
   // Role-specific portfolio sites
   "https://delivery.hamednouri.com":     { name: "Delivery",           category: "Portfolio" },
@@ -32,7 +34,6 @@ const SITES_META = {
 
   // Japanese / bilingual / solutions sites
   "https://jp.hamednouri.com":           { name: "Japanese Portfolio", category: "Bilingual" },
-  "https://solutions.hamednouri.com":    { name: "Solutions",          category: "Bilingual" },
   "https://jp-solutions.hamednouri.com": { name: "JP Solutions",       category: "Bilingual" },
 
   // Additional areas
@@ -47,7 +48,39 @@ const SITES_META = {
   "https://content.hamednouri.com":      { name: "Content",            category: "Additional" },
   "https://comms.hamednouri.com":        { name: "Comms",              category: "Additional" },
   "https://docs.hamednouri.com":         { name: "Docs",               category: "Additional" },
-  "https://portfolio.hamednouri.com":    { name: "Portfolio",          category: "Additional" }
+
+  // Entrepreneurship & Ventures
+  "https://ventures.hamednouri.com":     { name: "Ventures",           category: "Entrepreneurship" },
+  "https://business.hamednouri.com":     { name: "Business",           category: "Entrepreneurship" },
+  "https://founder.hamednouri.com":      { name: "Founder",            category: "Entrepreneurship" },
+  "https://startup.hamednouri.com":      { name: "Startup",            category: "Entrepreneurship" },
+  "https://products.hamednouri.com":     { name: "Products",           category: "Entrepreneurship" },
+
+  // Tech & Dev
+  "https://dev.hamednouri.com":          { name: "Dev",                category: "Technical" },
+  "https://ops.hamednouri.com":          { name: "Ops",                category: "Technical" },
+  "https://product.hamednouri.com":      { name: "Product",            category: "Technical" },
+  "https://automation.hamednouri.com":   { name: "Automation",         category: "Technical" },
+  "https://cloud.hamednouri.com":        { name: "Cloud",              category: "Technical" },
+
+  // Education & Language
+  "https://education.hamednouri.com":    { name: "Education",          category: "Education" },
+  "https://teaching.hamednouri.com":     { name: "Teaching",           category: "Education" },
+  "https://japanese.hamednouri.com":     { name: "Japanese",           category: "Education" },
+  "https://esl.hamednouri.com":          { name: "ESL",                category: "Education" },
+  "https://islamic.hamednouri.com":      { name: "Islamic",            category: "Education" },
+
+  // Creative & Media
+  "https://manga.hamednouri.com":        { name: "Manga",              category: "Creative" },
+  "https://comics.hamednouri.com":       { name: "Comics",             category: "Creative" },
+  "https://podcast.hamednouri.com":      { name: "Podcast",            category: "Creative" },
+  "https://audio.hamednouri.com":        { name: "Audio",              category: "Creative" },
+  "https://design.hamednouri.com":       { name: "Design",             category: "Creative" },
+  "https://community.hamednouri.com":    { name: "Community",          category: "Creative" },
+
+  // Marketing & Growth
+  "https://ads.hamednouri.com":          { name: "Ads",                category: "Marketing" },
+  "https://seo.hamednouri.com":          { name: "SEO",                category: "Marketing" },
 };
 
 function mapUrStatus(code) {
